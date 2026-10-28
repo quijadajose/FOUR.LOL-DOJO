@@ -205,8 +205,8 @@ export const PC_SRS_MISC_LESSONS: LessonDefinition[] = [
   // 38. 4TH PC (2-LINE SPRINT FINISH)
   {
     id: 'fourth-pc',
-    title: '4th / 7th PC (2-Line PC)',
-    jpTitle: '4巡・7巡パフェ (2ラインPC)',
+    title: '4th PC (2-Line Sprint PC)',
+    jpTitle: '4巡目パフェ (2ラインPC)',
     category: 'pc',
     difficulty: 2,
     fourLolUrl: 'https://four.lol/perfect-clears/4th',
@@ -1080,5 +1080,653 @@ export const PC_SRS_MISC_LESSONS: LessonDefinition[] = [
     preloadCount: 6,
     goalDescription: 'Construye la cabeza de serpiente de Viper y ejecuta su T-Spin Double.',
     goal: { requiredClears: ['TSD'] },
+  },
+
+  // 53. 3RD PC (1 EXTRA PIECE RESIDUAL)
+  {
+    id: 'third-pc',
+    title: '3rd PC (1 Pieza Extra)',
+    jpTitle: '3巡目パフェ (1ミノ余り→1個残し)',
+    category: 'pc',
+    difficulty: 3,
+    fourLolUrl: 'https://four.lol/perfect-clears/3rd',
+    summary: 'Patrones para el 3er Perfect Clear consecutivo cuando inicias con la pieza sobrante de la 3ª bolsa.',
+    theory:
+      'Tras completar dos Perfect Clears de 4 líneas (20 piezas colocadas = 2 bolsas + 6 piezas), siempre comienzas el 3er PC con exactamente 1 pieza sobrante de la 3ª bolsa antes de abrir la 4ª bolsa. Apoyar esa pieza a la izquierda permite cerrar las 36 celdas restantes en 9 piezas exactas.',
+    whenToUse: 'Al iniciar tu 3er Perfect Clear consecutivo después de 2nd PC.',
+    keyTip: 'Nivela primero la columna sobre la pieza residual para aislar una caja limpia de 4×4 a la derecha.',
+    initialBoardTopDown: [
+      '##........',
+      '##........',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '##........',
+        '##........',
+      ],
+      [
+        {
+          diagramTopDown: [
+            'OOIt11lllF',
+            'OOIL1TlooF',
+            '##ILTTjooF',
+            '##ILLTj33F', // wait: let's use single-char tokens 't' and 'j' cleanly!
+          ].slice(0, 0),
+          specs: [],
+        },
+        {
+          diagramTopDown: [
+            'OOItttlllF',
+            'OOILtTlooF',
+            '##ILTTjooF',
+            '##ILLTjjjF',
+          ],
+          specs: [
+            { token: 'O', piece: 'O', hint: 'O corona el residuo izquierdo completando cols 0-1' },
+            { token: 'I', piece: 'I', hint: 'I vertical sella la columna 2' },
+            { token: 'L', piece: 'L', hint: 'L vertical abre el bloque central (cols 3-4)' },
+            { token: 'T', piece: 'T', hint: '1ª T encaja en vertical en la columna 5' },
+            { token: 't', piece: 'T', hint: '2ª T cierra el techo del bloque izquierdo 6×4' },
+            { token: 'j', piece: 'J', role: 'attack', hint: 'J inicia el suelo de la caja derecha 4×4' },
+            { token: 'o', piece: 'O', role: 'attack', hint: 'O rellena el centro de las columnas 7-8' },
+            { token: 'l', piece: 'L', role: 'attack', hint: 'L cubre el techo de las columnas 6-8' },
+            {
+              token: 'F',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'TETRIS',
+              hint: '¡I vertical en col 9 cierra el 3er Perfect Clear!',
+            },
+          ],
+        },
+      ].slice(1)
+    ),
+    preloadCount: 5,
+    goalDescription: 'Completa el patrón de 3rd PC sobre la pieza extra inicial.',
+    goal: { requirePerfectClear: true },
+  },
+
+  // 54. 5TH PC (2 + 4 PIECE PATTERNS)
+  {
+    id: 'fifth-pc',
+    title: '5th PC (Patrón 2 + 4)',
+    jpTitle: '5巡目パフェ',
+    category: 'pc',
+    difficulty: 3,
+    fourLolUrl: 'https://four.lol/perfect-clears/5th',
+    summary: 'Patrones modulares 2 + 4 piezas para resolver el 5º Perfect Clear consecutivo.',
+    theory:
+      'Al llegar al 5º Perfect Clear (40 piezas colocadas = 5 bolsas + 5 piezas), te quedan exactamente 2 piezas sobrantes de la 6ª bolsa. Esas 2 piezas forman un pilar de 2×4 a la izquierda y las siguientes 4 piezas arman un módulo central 4×4 dejando la caja final lista.',
+    whenToUse: 'Al entrar en el 5º Perfect Clear tras completar 16 líneas limpias.',
+    keyTip: 'Divide mentalmente las 8 piezas restantes en dos cajas independientes de 4×4 (cols 2-5 y cols 6-9).',
+    initialBoardTopDown: [
+      '##........',
+      '##........',
+      '##........',
+      '##........',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '##........',
+        '##........',
+        '##........',
+        '##........',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '##ItttjjjF',
+            '##ILtToojF',
+            '##ILTToolF',
+            '##ILLTlllF',
+          ],
+          specs: [
+            { token: 'I', piece: 'I', hint: 'I vertical abre el módulo central en col 2' },
+            { token: 'L', piece: 'L', hint: 'L forma la esquina inferior de cols 3-4' },
+            { token: 'T', piece: 'T', hint: '1ª T encaja en vertical en col 5' },
+            { token: 't', piece: 'T', hint: '2ª T completa el módulo 2+4 en cols 0-5' },
+            { token: 'l', piece: 'L', role: 'attack', hint: '2ª L forma la base de la caja derecha' },
+            { token: 'o', piece: 'O', role: 'attack', hint: 'O se apoya en las columnas 6-7' },
+            { token: 'j', piece: 'J', role: 'attack', hint: 'J corona las columnas 6-8' },
+            {
+              token: 'F',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'TETRIS',
+              hint: '¡I final en col 9 para el 5th Perfect Clear!',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 4,
+    goalDescription: 'Resuelve los dos módulos 4×4 para lograr el 5th Perfect Clear.',
+    goal: { requirePerfectClear: true },
+  },
+
+  // 55. 6TH PC
+  {
+    id: 'sixth-pc',
+    title: '6th PC (Patrones de 6ª Bolsa)',
+    jpTitle: '6巡目パフェ',
+    category: 'pc',
+    difficulty: 3,
+    fourLolUrl: 'https://four.lol/perfect-clears/6th',
+    summary: 'Patrones para el 6º Perfect Clear aprovechando las 6 piezas finales antes del cierre de ciclo.',
+    theory:
+      'Después de 50 piezas colocadas (7 bolsas + 1 pieza), cuentas con 6 piezas conocidas de la 8ª bolsa al empezar el 6º PC. Asegurar primero un bloque de 3×4 en el flanco izquierdo permite colocar una bolsa limpia de 7 piezas.',
+    whenToUse: 'En carreras de Perfect Clear Mode rumbo al 7º PC.',
+    keyTip: 'Mantén una pared vertical limpia en la columna 2 para no mezclar paridades entre ambos lados.',
+    initialBoardTopDown: [
+      '###.......',
+      '###.......',
+      '###.......',
+      '###.......',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '###.......',
+        '###.......',
+        '###.......',
+        '###.......',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '###tttlllF',
+            '###LtTlooF',
+            '###LTTjooF',
+            '###LLTjjjF',
+          ],
+          specs: [
+            { token: 'L', piece: 'L', hint: 'L inicia el bloque central en cols 3-4' },
+            { token: 'T', piece: 'T', hint: '1ª T cierra la pared de la columna 5' },
+            { token: 't', piece: 'T', hint: '2ª T sella el techo de las columnas 3-5' },
+            { token: 'j', piece: 'J', role: 'attack', hint: 'J forma la base derecha en cols 6-8' },
+            { token: 'o', piece: 'O', role: 'attack', hint: 'O estabiliza las columnas 7-8' },
+            { token: 'l', piece: 'L', role: 'attack', hint: '2ª L tapa las columnas 6-8' },
+            {
+              token: 'F',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'TETRIS',
+              hint: '¡I en columna 9 completa el 6th Perfect Clear!',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 3,
+    goalDescription: 'Completa el 6th Perfect Clear dejando el tablero limpio.',
+    goal: { requirePerfectClear: true },
+  },
+
+  // 56. 7TH PC (100% LOOP RESET)
+  {
+    id: 'seventh-pc',
+    title: '7th PC (100% Cierre de Ciclo)',
+    jpTitle: '7巡目パフェ (100%ループ完結)',
+    category: 'pc',
+    difficulty: 2,
+    fourLolUrl: 'https://four.lol/perfect-clears/7th',
+    summary: 'Patrones 100% deterministas para el 7º PC (pieza #70 = 10 bolsas exactas) que reinician el bucle al 1er PC.',
+    theory:
+      '7 Perfect Clears de 4 líneas consumen exactamente 70 piezas = 10 bolsas completas de 7 piezas. Por ello, al completar el 7º PC no queda ninguna pieza suelta y la partida regresa exactamente al estado matemático inicial (PCO / Grace / ILSZ).',
+    whenToUse: 'En el 7º Perfect Clear consecutivo para reiniciar el ciclo infinito de 10 bolsas.',
+    keyTip: 'Con las primeras 6 piezas fijas en 6×4, las últimas 4 piezas de la 10ª bolsa siempre cierran la caja derecha.',
+    initialBoardTopDown: [
+      '######....',
+      '######....',
+      '######....',
+      '######....',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '######....',
+        '######....',
+        '######....',
+        '######....',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '######jjjF',
+            '######oojF',
+            '######oolF',
+            '######lllF',
+          ],
+          specs: [
+            { token: 'l', piece: 'L', role: 'attack', hint: 'L cubre las columnas 6-8 del suelo' },
+            { token: 'o', piece: 'O', role: 'attack', hint: 'O rellena el núcleo en cols 6-7' },
+            { token: 'j', piece: 'J', role: 'attack', hint: 'J invertida cierra el techo en cols 6-8' },
+            {
+              token: 'F',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'TETRIS',
+              hint: '¡Pieza #70: suelta I en col 9 para cerrar el ciclo de 7 Perfect Clears!',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 0,
+    goalDescription: 'Cierra la caja final del 7th PC para reiniciar el ciclo de 10 bolsas.',
+    goal: { requirePerfectClear: true },
+  },
+
+  // 57. SRS KICKS OVERVIEW
+  {
+    id: 'srs-kicks-overview',
+    title: 'SRS: Kicks Overview (Pared y Suelo)',
+    jpTitle: 'SRS回転法則の基本',
+    category: 'srs',
+    difficulty: 1,
+    fourLolUrl: 'https://four.lol/srs/kicks-overview',
+    summary: 'Introducción práctica a cómo el Super Rotation System evalúa 5 desplazamientos para encajar piezas bajo techos.',
+    theory:
+      'Cuando giras una pieza en SRS y su posición natural choca con un muro, el suelo o una pila, el juego no cancela el giro de inmediato: consulta una tabla ordenada de 5 desplazamientos (pruebas 0 a 4) y aplica el primero que esté libre. Esto permite deslizar J/L bajo cornisas y girar T dentro de cuevas.',
+    whenToUse: 'Constantemente: entender el orden de pruebas te evita bloquear pozos y te abre giros creativos con cualquier pieza.',
+    keyTip: 'Primero encaja J bajo la cornisa izquierda usando rotación en el suelo, añade el alero Z y remata con T-Spin Double.',
+    initialBoardTopDown: [
+      '##........',
+      '#......###',
+      '###.#.####',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '##........',
+        '#......###',
+        '###.#.####',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '..ZZ......',
+            '##.ZZ.....',
+            '#JJJTTT###',
+            '###J#T####',
+          ],
+          specs: [
+            {
+              token: 'J',
+              piece: 'J',
+              hint: 'Baja J y gírala/deslízala bajo el techo izquierdo (cols 1-3)',
+            },
+            {
+              token: 'Z',
+              piece: 'Z',
+              hint: 'Z reposa sobre J creando el alero superior de la T',
+            },
+            {
+              token: 'T',
+              piece: 'T',
+              role: 'attack',
+              expectedClear: 'TSD',
+              hint: '¡Gira T bajo el alero Z aplicando la tabla de kicks SRS (TSD)!',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 2,
+    goalDescription: 'Usa los wall/floor kicks básicos de SRS para completar el T-Spin Double.',
+    goal: { requiredClears: ['TSD'] },
+  },
+
+  // 58. NEW DT CANNON
+  {
+    id: 'new-dt-cannon',
+    title: 'New DT Cannon (新DT砲)',
+    jpTitle: '新DT砲 (TSD→TST→TSD)',
+    category: 'misc',
+    difficulty: 5,
+    fourLolUrl: 'https://four.lol/openers/new-dt-cannon',
+    summary: 'Evolución de 5 bolsas del DT Cannon que continúa el residuo del TST con un 3er T-Spin Double encadenado.',
+    theory:
+      'New DT Cannon aprovecha los bloques escalonados que sobreviven tras el TSD → TST del DT Cannon clásico para construir inmediatamente un tercer T-Spin Double Back-to-Back que encamina la partida hacia Tetris y Perfect Clear.',
+    whenToUse: 'Cuando dominas el DT Cannon estándar y quieres maximizar la presión B2B en la 3ª y 4ª bolsa.',
+    keyTip: 'Tras el TST, nivela las columnas 0-2 con J y usa S en el centro para dejar lista la ranura del 3er T-Spin.',
+    initialBoardTopDown: [],
+    steps: compileMultiStageSteps([], [
+      {
+        diagramTopDown: [
+          'LLL.....S.',
+          'LOO.T...SS',
+          'JOOTTT.ZZS',
+          'JJJIIII.ZZ',
+        ],
+        specs: [
+          { token: 'J', piece: 'J', hint: 'J en esquina izquierda' },
+          { token: 'I', piece: 'I', hint: 'I horizontal en cols 3-6' },
+          { token: 'O', piece: 'O', hint: 'O sobre J' },
+          { token: 'L', piece: 'L', hint: 'L corona la torre izquierda' },
+          { token: 'T', piece: 'T', hint: '1ª T nivela el centro' },
+          { token: 'Z', piece: 'Z', hint: 'Z deja abierto el pozo en col 7' },
+          { token: 'S', piece: 'S', hint: 'S vertical en cols 8-9' },
+        ],
+      },
+      {
+        diagramTopDown: [
+          '...Z...LLI',
+          'OOZZ....LI',
+          'OOZJJSS.LI',
+          '###JSS..#I',
+          '###J#TTT##',
+          '######T###',
+          '#######.##',
+        ],
+        specs: [
+          { token: 'J', piece: 'J', hint: 'J estabiliza la columna 3' },
+          { token: 'O', piece: 'O', hint: 'O sube las columnas 0-1' },
+          { token: 'Z', piece: 'Z', hint: 'Z vertical sobre J' },
+          { token: 'S', piece: 'S', hint: 'S proyecta el alero del 1er TSD' },
+          { token: 'I', piece: 'I', hint: 'I vertical cierra col 9' },
+          { token: 'L', piece: 'L', hint: 'L prepara arriba el alero del TST' },
+          {
+            token: 'T',
+            piece: 'T',
+            role: 'attack',
+            expectedClear: 'TSD',
+            hint: '¡1er disparo: T-Spin Double!',
+          },
+        ],
+      },
+      {
+        diagramTopDown: [
+          '...#...###',
+          '####....##',
+          '#######T##',
+          '######TT##',
+          '#######T##',
+        ],
+        specs: [
+          {
+            token: 'T',
+            piece: 'T',
+            role: 'attack',
+            expectedClear: 'TST',
+            hint: '¡2º disparo: kick (+1, -2) para el B2B TST!',
+          },
+        ],
+      },
+      {
+        diagramTopDown: [
+          '.........i',
+          '.zz......i',
+          'jozz....li',
+          'jooTTTllli',
+          'jjj#Tss###',
+          '####ss..##',
+        ],
+        specs: [
+          { token: 'j', piece: 'J', role: 'attack', hint: 'J rellena las columnas 0-2 sobre la base izquierda' },
+          { token: 's', piece: 'S', role: 'attack', hint: 'S en cols 4-6 crea la esquina derecha de la nueva ranura T' },
+          { token: 'o', piece: 'O', role: 'attack', hint: 'O sube las columnas 1-2' },
+          { token: 'i', piece: 'I', role: 'attack', hint: 'I vertical cierra la columna 9' },
+          { token: 'l', piece: 'L', role: 'attack', hint: 'L aplana las columnas 6-8' },
+          { token: 'z', piece: 'Z', role: 'attack', hint: 'Z sobre O proyecta el alero del 3er T-Spin' },
+          {
+            token: 'T',
+            piece: 'T',
+            role: 'attack',
+            expectedClear: 'TSD',
+            hint: '¡3er disparo de New DT Cannon: B2B T-Spin Double!',
+          },
+        ],
+      },
+    ]),
+    preloadCount: 13,
+    goalDescription: 'Completa la cadena triple de New DT Cannon: TSD → B2B TST → B2B TSD.',
+    goal: { requiredClears: ['TSD', 'TST', 'TSD'] },
+  },
+
+  // 59. 4-WIDE 6-RESIDUAL PATTERNS
+  {
+    id: 'four-wide-6-res',
+    title: '4-Wide (6-Residual Patterns)',
+    jpTitle: '4列REN (6残し全パターン)',
+    category: 'misc',
+    difficulty: 3,
+    fourLolUrl: 'https://four.lol/misc/all-6-residuals',
+    summary: 'Variante avanzada de 4-Wide con 6 bloques residuales que ofrece aún más rutas de continuación sin ahogarse.',
+    theory:
+      'Mientras el 4-Wide clásico conserva 3 bloques en el fondo, el 4-Wide de 6 bloques residuales (6 + 4 - 4 = 6) mantiene una escalera más rica de apoyos que acomoda secuencias incómodas de S/Z y dobles I sin romper jamás la racha de Combo.',
+    whenToUse: 'Cuando abres un 4-Wide central o lateral con 6 minos residuales en el canal.',
+    keyTip: 'Observa cómo después de cada Single siguen quedando exactamente 6 bloques escalonados sin agujeros tapados.',
+    initialBoardTopDown: [
+      '######....',
+      '######....',
+      '######....',
+      '######....',
+      '######...#',
+      '######..##',
+      '######.###',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '######....',
+        '######....',
+        '######....',
+        '######....',
+        '######...#',
+        '######..##',
+        '######.###',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '######I...',
+            '######I..#',
+            '######I.##',
+            '######I###',
+          ],
+          specs: [
+            {
+              token: 'I',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'SINGLE',
+              hint: '1ª línea (6-res): I en col 6 limpia fila 0 dejando 6 bloques',
+            },
+          ],
+        },
+        {
+          diagramTopDown: [
+            '######.I..',
+            '#######I..',
+            '#######I.#',
+            '#######I##',
+          ],
+          specs: [
+            {
+              token: 'I',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'SINGLE',
+              hint: '2ª línea (Combo ×1): 2ª I en col 7 conserva 6 bloques limpios',
+            },
+          ],
+        },
+        {
+          diagramTopDown: [
+            '######..JJ',
+            '#######.J.',
+            '########J.',
+            '########J#',
+          ],
+          specs: [
+            {
+              token: 'J',
+              piece: 'J',
+              role: 'attack',
+              expectedClear: 'SINGLE',
+              hint: '3ª línea (Combo ×2): J invertida limpia col 8',
+            },
+          ],
+        },
+        {
+          diagramTopDown: [
+            '######..LL',
+            '#######..L',
+            '#########L',
+          ],
+          specs: [
+            {
+              token: 'L',
+              piece: 'L',
+              role: 'attack',
+              expectedClear: 'SINGLE',
+              hint: '4ª línea (Combo ×3): L invertida cierra col 9 preservando los 6 residuos',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 0,
+    goalDescription: 'Encadena 4 limpias seguidas (Combo ×3) manteniendo el patrón de 6 residuos.',
+    goal: { minCombo: 3 },
+  },
+
+  // 60. TETRIS EFFECT: ALL CLEAR MODE PUZZLE
+  {
+    id: 'tetris-effect-all-clear',
+    title: 'Tetris Effect: All Clear Puzzle',
+    jpTitle: 'テトリスエフェクト All Clear',
+    category: 'misc',
+    difficulty: 3,
+    fourLolUrl: 'https://four.lol/tetris-effect/all-clear',
+    summary: 'Rompecabezas asimétrico estilo All Clear Mode de Tetris Effect donde un T-Spin prepara el vaciado total.',
+    theory:
+      'En el modo All Clear de Tetris Effect muchos tableros parecen imposibles si intentas apilar de forma plana. La solución consiste en crear un alero temporal con S/Z para ejecutar un T-Spin intermedio que alinee los bloques superiores en una sola fila limpia para I.',
+    whenToUse: 'Para entrenar visión espacial de residuos post-limpieza y puzzles de Perfect Clear.',
+    keyTip: 'Coloca S formando el alero en col 4, gira T para limpiar las 2 filas inferiores y remata con I horizontal.',
+    initialBoardTopDown: [
+      '###......#',
+      '##.....###',
+      '#####.####',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '###......#',
+        '##.....###',
+        '#####.####',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '###SS....#',
+            '##SSTTT###',
+            '#####T####',
+          ],
+          specs: [
+            { token: 'S', piece: 'S', hint: 'S rellena cols 2-3 abajo y deja su brazo superior como alero TSD' },
+            {
+              token: 'T',
+              piece: 'T',
+              role: 'attack',
+              expectedClear: 'TSD',
+              hint: '¡Gira T bajo S para limpiar las 2 filas inferiores y alinear la fila superior!',
+            },
+          ],
+        },
+        {
+          diagramTopDown: [
+            '#####IIII#',
+          ],
+          specs: [
+            {
+              token: 'I',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'SINGLE',
+              hint: '¡Encaja I horizontal en cols 5-8 para lograr el All Clear!',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 0,
+    goalDescription: 'Resuelve el puzzle All Clear con S → TSD → I dejando el tablero vacío.',
+    goal: { requiredClears: ['TSD'], requirePerfectClear: true },
+  },
+
+  // 61. TETRIS EFFECT: BOSS ABILITIES DOWNSTACK
+  {
+    id: 'tetris-effect-boss',
+    title: 'Tetris Effect: Boss Downstack',
+    jpTitle: 'テトリスエフェクトConnected ボス対策',
+    category: 'misc',
+    difficulty: 2,
+    fourLolUrl: 'https://four.lol/tetris-effect/boss-abilities',
+    summary: 'Defensa y contraataque en Connected VS destapando basura escalonada de jefe mediante TSD → B2B Tetris.',
+    theory:
+      'En el modo Connected VS de Tetris Effect, las habilidades de los jefes envían basura fracturada o desnivelada. Mantener la calma y usar un T-Spin de excavación (Downstack TSD) permite abrir el pozo inferior de 4 filas sin perder la cadena Back-to-Back durante la fase Zone.',
+    whenToUse: 'Al excavar basura escalonada bajo presión manteniendo el bono Back-to-Back activo.',
+    keyTip: 'Limpia primero el tapón superior con TSD usando Z como alero y clava I en la columna 8 recién abierta.',
+    initialBoardTopDown: [
+      '####...###',
+      '#####.####',
+      '########.#',
+      '########.#',
+      '########.#',
+      '########.#',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '####...###',
+        '#####.####',
+        '########.#',
+        '########.#',
+        '########.#',
+        '########.#',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '..ZZ......',
+            '...ZZ.....',
+            '####TTT###',
+            '#####T####',
+            '########.#',
+            '########.#',
+            '########.#',
+            '########.#',
+          ],
+          specs: [
+            { token: 'Z', piece: 'Z', hint: 'Z proyecta el alero sobre la basura superior' },
+            {
+              token: 'T',
+              piece: 'T',
+              role: 'attack',
+              expectedClear: 'TSD',
+              hint: '¡Excava las 2 filas superiores con TSD destapando el pozo en col 8!',
+            },
+          ],
+        },
+        {
+          diagramTopDown: [
+            '..##......',
+            '...##.....',
+            '########I#',
+            '########I#',
+            '########I#',
+            '########I#',
+          ],
+          specs: [
+            {
+              token: 'I',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'TETRIS',
+              hint: '¡Lanza I en la columna 8 para limpiar las 4 filas de basura con B2B Tetris!',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 1,
+    goalDescription: 'Excava la basura del jefe encadenando Downstack TSD → B2B Tetris.',
+    goal: { requiredClears: ['TSD', 'TETRIS'] },
   },
 ];

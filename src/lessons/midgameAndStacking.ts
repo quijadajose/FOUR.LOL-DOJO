@@ -464,4 +464,142 @@ export const MIDGAME_AND_STACKING_LESSONS: LessonDefinition[] = [
     goalDescription: 'Encadena un Combo ×3 o superior sin fallar ninguna línea en el pozo 4-Wide.',
     goal: { minCombo: 3 },
   },
+
+  // 34b. PUYO PUYO TETRIS (6-3 STACKING)
+  {
+    id: 'puyo-puyo-tetris',
+    title: 'Puyo Puyo Tetris (6-3 Stacking)',
+    jpTitle: 'ぷよぷよテトリス (6-3積み)',
+    category: 'midgame',
+    difficulty: 2,
+    fourLolUrl: 'https://four.lol/mid-game/puyo-puyo-tetris',
+    summary: 'Apilado competitivo 6-3 (6 columnas a la izquierda, 3 a la derecha) ideal para enlazar TSDs y Tetrises con mínimo retardo.',
+    theory:
+      'En juegos con retardo de limpieza de línea (como Puyo Puyo Tetris), perder fotogramas haciendo Singles lentos penaliza el ritmo. El apilado 6-3 coloca el pozo exactamente bajo la zona de aparición de las piezas (columna 6), optimizando el Finesse y permitiendo encadenar T-Spin Doubles y Tetrises Back-to-Back de máximo impacto.',
+    whenToUse: 'En partidas Versus cuando buscas máxima eficiencia de ataque por pieza y transiciones fluidas entre TSD y Tetris.',
+    keyTip: 'Usa Z sobre el bloque izquierdo de 6 columnas para proyectar un alero limpio sobre el pozo central y sigue de inmediato con I.',
+    initialBoardTopDown: [
+      '#####...##',
+      '######.###',
+      '######.###',
+      '######.###',
+      '######.###',
+      '######.###',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '#####...##',
+        '######.###',
+        '######.###',
+        '######.###',
+        '######.###',
+        '######.###',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '...ZZ.....',
+            '....ZZ....',
+            '#####TTT##',
+            '######T###',
+            '######.###',
+            '######.###',
+            '######.###',
+            '######.###',
+          ],
+          specs: [
+            { token: 'Z', piece: 'Z', hint: 'Z proyecta el alero sobre la columna 5 sin tapar el pozo 6-3' },
+            {
+              token: 'T',
+              piece: 'T',
+              role: 'attack',
+              expectedClear: 'TSD',
+              hint: '¡Gira T en el pozo central 6-3 para enviar el T-Spin Double!',
+            },
+          ],
+        },
+        {
+          diagramTopDown: [
+            '...##.....',
+            '....##....',
+            '######I###',
+            '######I###',
+            '######I###',
+            '######I###',
+          ],
+          specs: [
+            {
+              token: 'I',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'TETRIS',
+              hint: '¡Suelta I directo desde el spawn en col 6 para el B2B Tetris!',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 1,
+    goalDescription: 'Ejecuta la combinación clásica 6-3 de PPT: TSD → B2B Tetris.',
+    goal: { requiredClears: ['TSD', 'TETRIS'] },
+  },
+
+  // 34c. SITUATIONAL FINESSE
+  {
+    id: 'situational-finesse',
+    title: 'Situational Finesse (S/Z/I)',
+    jpTitle: '特殊フィネス (S・Z・I縦置き)',
+    category: 'midgame',
+    difficulty: 2,
+    fourLolUrl: 'https://four.lol/mid-game/situational-finesse',
+    summary: 'Secuencias óptimas para colocar piezas S, Z e I verticalmente contra las paredes y columnas centrales con 0 faltas.',
+    theory:
+      'Las piezas simétricas (S, Z, I) cambian su columna relativa según rotes en sentido horario (↑/X) o antihorario (Z). Elegir el sentido de rotación correcto ahorra pulsaciones: por ejemplo, Z (↺) + DAS Izq pega S vertical a la pared izquierda en solo 2 entradas.',
+    whenToUse: 'Cada vez que necesites colocar S, Z o I en vertical a toda velocidad sin correcciones sobrantes.',
+    keyTip: 'S izq: Z (↺) + DAS ← | Z der: ↑/X (↻) + DAS → | I col 5: ↑/X (↻) en el sitio.',
+    initialBoardTopDown: [
+      '..###.##..',
+      '#.###.##.#',
+    ],
+    steps: compileMultiStageSteps(
+      [
+        '..###.##..',
+        '#.###.##.#',
+      ],
+      [
+        {
+          diagramTopDown: [
+            '.....I....',
+            'S....I...Z',
+            'SS###I##ZZ',
+            '#S###I##Z#',
+          ],
+          specs: [
+            {
+              token: 'S',
+              piece: 'S',
+              role: 'attack',
+              hint: 'S vertical en cols 0-1: pulsa Z (↺) + DAS Izquierda (⇐)',
+            },
+            {
+              token: 'Z',
+              piece: 'Z',
+              role: 'attack',
+              hint: 'Z vertical en cols 8-9: pulsa ↑/X (↻) + DAS Derecha (⇒)',
+            },
+            {
+              token: 'I',
+              piece: 'I',
+              role: 'attack',
+              expectedClear: 'DOUBLE',
+              hint: 'I vertical en col 5: pulsa ↑/X (↻) en el sitio y Espacio',
+            },
+          ],
+        },
+      ]
+    ),
+    preloadCount: 0,
+    goalDescription: 'Coloca S, Z e I verticales limpiando el Double con 0 faltas de Finesse.',
+    goal: { requiredClears: ['DOUBLE'], maxFinesseFaults: 0 },
+  },
 ];
