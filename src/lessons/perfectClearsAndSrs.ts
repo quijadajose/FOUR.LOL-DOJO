@@ -1107,15 +1107,6 @@ export const PC_SRS_MISC_LESSONS: LessonDefinition[] = [
       [
         {
           diagramTopDown: [
-            'OOIt11lllF',
-            'OOIL1TlooF',
-            '##ILTTjooF',
-            '##ILLTj33F', // wait: let's use single-char tokens 't' and 'j' cleanly!
-          ].slice(0, 0),
-          specs: [],
-        },
-        {
-          diagramTopDown: [
             'OOItttlllF',
             'OOILtTlooF',
             '##ILTTjooF',
@@ -1139,7 +1130,7 @@ export const PC_SRS_MISC_LESSONS: LessonDefinition[] = [
             },
           ],
         },
-      ].slice(1)
+      ]
     ),
     preloadCount: 5,
     goalDescription: 'Completa el patrón de 3rd PC sobre la pieza extra inicial.',
