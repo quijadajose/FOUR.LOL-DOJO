@@ -1320,21 +1320,21 @@ export const PC_SRS_MISC_LESSONS: LessonDefinition[] = [
     whenToUse: 'Constantemente: entender el orden de pruebas te evita bloquear pozos y te abre giros creativos con cualquier pieza.',
     keyTip: 'Primero encaja J bajo la cornisa izquierda usando rotación en el suelo, añade el alero Z y remata con T-Spin Double.',
     initialBoardTopDown: [
-      '##........',
+      '#......###',
       '#......###',
       '###.#.####',
     ],
     steps: compileMultiStageSteps(
       [
-        '##........',
+        '#......###',
         '#......###',
         '###.#.####',
       ],
       [
         {
           diagramTopDown: [
-            '..ZZ......',
-            '##.ZZ.....',
+            '..ZZ...###',
+            '#..ZZ..###',
             '#JJJTTT###',
             '###J#T####',
           ],
@@ -1445,17 +1445,17 @@ export const PC_SRS_MISC_LESSONS: LessonDefinition[] = [
         diagramTopDown: [
           '.........i',
           '.zz......i',
-          'jozz....li',
+          'jjzz....li',
           'jooTTTllli',
-          'jjj#Tss###',
+          'joo#Tss###',
           '####ss..##',
         ],
         specs: [
-          { token: 'j', piece: 'J', role: 'attack', hint: 'J rellena las columnas 0-2 sobre la base izquierda' },
-          { token: 's', piece: 'S', role: 'attack', hint: 'S en cols 4-6 crea la esquina derecha de la nueva ranura T' },
           { token: 'o', piece: 'O', role: 'attack', hint: 'O sube las columnas 1-2' },
-          { token: 'i', piece: 'I', role: 'attack', hint: 'I vertical cierra la columna 9' },
+          { token: 's', piece: 'S', role: 'attack', hint: 'S en cols 4-6 crea la esquina derecha de la nueva ranura T' },
           { token: 'l', piece: 'L', role: 'attack', hint: 'L aplana las columnas 6-8' },
+          { token: 'i', piece: 'I', role: 'attack', hint: 'I vertical cierra la columna 9' },
+          { token: 'j', piece: 'J', role: 'attack', hint: 'J rellena las columnas 0-2 sobre la base izquierda' },
           { token: 'z', piece: 'Z', role: 'attack', hint: 'Z sobre O proyecta el alero del 3er T-Spin' },
           {
             token: 'T',
@@ -1541,10 +1541,10 @@ export const PC_SRS_MISC_LESSONS: LessonDefinition[] = [
         },
         {
           diagramTopDown: [
-            '######..JJ',
-            '#######.J.',
-            '########J.',
-            '########J#',
+            '######...J',
+            '######.#.J',
+            '########JJ',
+            '########.#',
           ],
           specs: [
             {
@@ -1558,9 +1558,9 @@ export const PC_SRS_MISC_LESSONS: LessonDefinition[] = [
         },
         {
           diagramTopDown: [
-            '######..LL',
-            '#######..L',
-            '#########L',
+            '######.LL#',
+            '######.#L#',
+            '########L#',
           ],
           specs: [
             {
